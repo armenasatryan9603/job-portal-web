@@ -478,7 +478,10 @@
         <!-- Article 2: Role Requirements for Specialists -->
         <a href="#" class="article-card warning">
           <h3>Role Requirements for Specialists</h3>
-          <p>To be visible and searchable in the specialists list, your role must be set to 'Specialist', not 'Client'</p>
+          <p>
+            To be visible and searchable in the specialists list, your role must
+            be set to 'Specialist', not 'Client'
+          </p>
           <ul class="article-steps">
             <li>Go to your Profile tab</li>
             <li>Open the Account Information section</li>
@@ -633,13 +636,15 @@
           tapSave: "Tap 'Save' to apply changes",
           // Article 2
           roleRequirementsForSpecialists: "Role Requirements for Specialists",
-          roleRequirementsForSpecialistsDesc: "To be visible and searchable in the specialists list, your role must be set to 'Specialist', not 'Client'",
+          roleRequirementsForSpecialistsDesc:
+            "To be visible and searchable in the specialists list, your role must be set to 'Specialist', not 'Client'",
           goToProfileRole: "Go to your Profile tab",
           openAccountInfo: "Open the Account Information section",
           tapEditRole: "Tap on 'Edit' button",
           selectSpecialist: "Select 'Specialist' as your role",
           tapSaveRole: "Tap 'Save' to apply changes",
-          profileAppearsInList: "Your profile will now appear in the specialists list",
+          profileAppearsInList:
+            "Your profile will now appear in the specialists list",
           // Article 3
           privacySettings: "Privacy Settings",
           privacySettingsDesc: "Control who can see your information",
@@ -699,13 +704,15 @@
           tapSave: "Սեղմեք 'Պահպանել'՝ փոփոխությունները կիրառելու համար",
           // Article 2
           roleRequirementsForSpecialists: "Մասնագետների Դերի Պահանջներ",
-          roleRequirementsForSpecialistsDesc: "Մասնագետների ցուցակում տեսանելի և որոնելի լինելու համար ձեր դերը պետք է լինի 'Մասնագետ', ոչ թե 'Հաճախորդ'",
+          roleRequirementsForSpecialistsDesc:
+            "Մասնագետների ցուցակում տեսանելի և որոնելի լինելու համար ձեր դերը պետք է լինի 'Մասնագետ', ոչ թե 'Հաճախորդ'",
           goToProfileRole: "Գնացեք ձեր Պրոֆիլ ներդիր",
           openAccountInfo: "Բացեք Հաշվի Տեղեկությունների բաժինը",
           tapEditRole: "Սեղմեք 'Խմբագրել' կոճակը",
           selectSpecialist: "Ընտրեք 'Մասնագետ' որպես ձեր դեր",
           tapSaveRole: "Սեղմեք 'Պահպանել'՝ փոփոխությունները կիրառելու համար",
-          profileAppearsInList: "Ձեր պրոֆիլը այժմ կհայտնվի մասնագետների ցուցակում",
+          profileAppearsInList:
+            "Ձեր պրոֆիլը այժմ կհայտնվի մասնագետների ցուցակում",
           // Article 3
           privacySettings: "Գաղտնիության Կարգավորումներ",
           privacySettingsDesc:
@@ -770,13 +777,15 @@
           tapSave: "Нажмите 'Сохранить', чтобы применить изменения",
           // Article 2
           roleRequirementsForSpecialists: "Требования к роли для специалистов",
-          roleRequirementsForSpecialistsDesc: "Чтобы быть видимым и находимым в списке специалистов, ваша роль должна быть установлена как 'Специалист', а не 'Клиент'",
+          roleRequirementsForSpecialistsDesc:
+            "Чтобы быть видимым и находимым в списке специалистов, ваша роль должна быть установлена как 'Специалист', а не 'Клиент'",
           goToProfileRole: "Перейдите на вкладку Профиль",
           openAccountInfo: "Откройте раздел Информация об аккаунте",
           tapEditRole: "Нажмите кнопку 'Редактировать'",
           selectSpecialist: "Выберите 'Специалист' в качестве вашей роли",
           tapSaveRole: "Нажмите 'Сохранить', чтобы применить изменения",
-          profileAppearsInList: "Ваш профиль теперь появится в списке специалистов",
+          profileAppearsInList:
+            "Ваш профиль теперь появится в списке специалистов",
           // Article 3
           privacySettings: "Настройки Конфиденциальности",
           privacySettingsDesc:
@@ -917,10 +926,10 @@
 
         // Update Article 4: Account Security
         const article4 = document.querySelectorAll(".article-card")[3];
-        if (article3) {
-          const h3 = article3.querySelector("h3");
-          const p = article3.querySelector("p");
-          const steps = article3.querySelectorAll(".article-steps li");
+        if (article4) {
+          const h3 = article4.querySelector("h3");
+          const p = article4.querySelector("p");
+          const steps = article4.querySelectorAll(".article-steps li");
           if (h3) h3.textContent = t.accountSecurity;
           if (p) p.textContent = t.accountSecurityDesc;
           if (steps.length >= 6) {
@@ -931,16 +940,16 @@
             steps[4].textContent = t.logoutShared;
             steps[5].textContent = t.reportSuspicious;
           }
-          const readMore = article3.querySelector(".read-more");
+          const readMore = article4.querySelector(".read-more");
           if (readMore) readMore.textContent = t.readMore;
         }
 
-        // Update Article 4: Data Export
-        const article4 = document.querySelectorAll(".article-card")[3];
-        if (article4) {
-          const h3 = article4.querySelector("h3");
-          const p = article4.querySelector("p");
-          const steps = article4.querySelectorAll(".article-steps li");
+        // Update Article 5: Data Export
+        const article5 = document.querySelectorAll(".article-card")[4];
+        if (article5) {
+          const h3 = article5.querySelector("h3");
+          const p = article5.querySelector("p");
+          const steps = article5.querySelectorAll(".article-steps li");
           if (h3) h3.textContent = t.dataExport;
           if (p) p.textContent = t.dataExportDesc;
           if (steps.length >= 5) {
@@ -950,7 +959,7 @@
             steps[3].textContent = t.receiveLink;
             steps[4].textContent = t.downloadSave;
           }
-          const readMore = article4.querySelector(".read-more");
+          const readMore = article5.querySelector(".read-more");
           if (readMore) readMore.textContent = t.readMore;
         }
 
