@@ -475,7 +475,22 @@
           <span class="read-more">Read more →</span>
         </a>
 
-        <!-- Article 2: Privacy Settings -->
+        <!-- Article 2: Role Requirements for Specialists -->
+        <a href="#" class="article-card warning">
+          <h3>Role Requirements for Specialists</h3>
+          <p>To be visible and searchable in the specialists list, your role must be set to 'Specialist', not 'Client'</p>
+          <ul class="article-steps">
+            <li>Go to your Profile tab</li>
+            <li>Open the Account Information section</li>
+            <li>Tap on 'Edit' button</li>
+            <li>Select 'Specialist' as your role</li>
+            <li>Tap 'Save' to apply changes</li>
+            <li>Your profile will now appear in the specialists list</li>
+          </ul>
+          <span class="read-more">Read more →</span>
+        </a>
+
+        <!-- Article 3: Privacy Settings -->
         <a href="#" class="article-card">
           <h3>Privacy Settings</h3>
           <p>Control who can see your information</p>
@@ -617,6 +632,15 @@
           updateBio: "Update your bio, location, or contact information",
           tapSave: "Tap 'Save' to apply changes",
           // Article 2
+          roleRequirementsForSpecialists: "Role Requirements for Specialists",
+          roleRequirementsForSpecialistsDesc: "To be visible and searchable in the specialists list, your role must be set to 'Specialist', not 'Client'",
+          goToProfileRole: "Go to your Profile tab",
+          openAccountInfo: "Open the Account Information section",
+          tapEditRole: "Tap on 'Edit' button",
+          selectSpecialist: "Select 'Specialist' as your role",
+          tapSaveRole: "Tap 'Save' to apply changes",
+          profileAppearsInList: "Your profile will now appear in the specialists list",
+          // Article 3
           privacySettings: "Privacy Settings",
           privacySettingsDesc: "Control who can see your information",
           manageProfileVisibility:
@@ -625,7 +649,7 @@
           adjustNotifications: "Adjust notification preferences",
           manageDataSharing: "Manage data sharing settings",
           reviewConnectedApps: "Review connected apps and services",
-          // Article 3
+          // Article 4
           accountSecurity: "Account Security",
           accountSecurityDesc: "Keep your account safe and secure",
           strongPassword: "Use a strong, unique password",
@@ -634,7 +658,7 @@
           dontShareOTP: "Don't share your OTP codes with anyone",
           logoutShared: "Log out from shared devices",
           reportSuspicious: "Report suspicious activity immediately",
-          // Article 4
+          // Article 5
           dataExport: "Data Export",
           dataExportDesc: "Download a copy of your personal data",
           goToSettingsPrivacy: "Go to Settings > Privacy",
@@ -642,7 +666,7 @@
           requestExport: "Request your data export",
           receiveLink: "You'll receive a download link via email",
           downloadSave: "Download and save your data",
-          // Article 5
+          // Article 6
           accountDeletion: "Account Deletion",
           accountDeletionDesc: "Permanently delete your account and all data",
           permanentAction: "⚠️ Permanent Action",
@@ -674,6 +698,15 @@
             "Թարմացրեք ձեր կենսագրությունը, գտնվելու վայրը կամ կոնտակտային տեղեկությունները",
           tapSave: "Սեղմեք 'Պահպանել'՝ փոփոխությունները կիրառելու համար",
           // Article 2
+          roleRequirementsForSpecialists: "Մասնագետների Դերի Պահանջներ",
+          roleRequirementsForSpecialistsDesc: "Մասնագետների ցուցակում տեսանելի և որոնելի լինելու համար ձեր դերը պետք է լինի 'Մասնագետ', ոչ թե 'Հաճախորդ'",
+          goToProfileRole: "Գնացեք ձեր Պրոֆիլ ներդիր",
+          openAccountInfo: "Բացեք Հաշվի Տեղեկությունների բաժինը",
+          tapEditRole: "Սեղմեք 'Խմբագրել' կոճակը",
+          selectSpecialist: "Ընտրեք 'Մասնագետ' որպես ձեր դեր",
+          tapSaveRole: "Սեղմեք 'Պահպանել'՝ փոփոխությունները կիրառելու համար",
+          profileAppearsInList: "Ձեր պրոֆիլը այժմ կհայտնվի մասնագետների ցուցակում",
+          // Article 3
           privacySettings: "Գաղտնիության Կարգավորումներ",
           privacySettingsDesc:
             "Վերահսկեք, թե ով կարող է տեսնել ձեր տեղեկությունները",
@@ -736,6 +769,15 @@
             "Обновите биографию, местоположение или контактную информацию",
           tapSave: "Нажмите 'Сохранить', чтобы применить изменения",
           // Article 2
+          roleRequirementsForSpecialists: "Требования к роли для специалистов",
+          roleRequirementsForSpecialistsDesc: "Чтобы быть видимым и находимым в списке специалистов, ваша роль должна быть установлена как 'Специалист', а не 'Клиент'",
+          goToProfileRole: "Перейдите на вкладку Профиль",
+          openAccountInfo: "Откройте раздел Информация об аккаунте",
+          tapEditRole: "Нажмите кнопку 'Редактировать'",
+          selectSpecialist: "Выберите 'Специалист' в качестве вашей роли",
+          tapSaveRole: "Нажмите 'Сохранить', чтобы применить изменения",
+          profileAppearsInList: "Ваш профиль теперь появится в списке специалистов",
+          // Article 3
           privacySettings: "Настройки Конфиденциальности",
           privacySettingsDesc:
             "Контролируйте, кто может видеть вашу информацию",
@@ -834,12 +876,32 @@
           if (readMore) readMore.textContent = t.readMore;
         }
 
-        // Update Article 2: Privacy Settings
+        // Update Article 2: Role Requirements for Specialists
         const article2 = document.querySelectorAll(".article-card")[1];
         if (article2) {
           const h3 = article2.querySelector("h3");
           const p = article2.querySelector("p");
           const steps = article2.querySelectorAll(".article-steps li");
+          if (h3) h3.textContent = t.roleRequirementsForSpecialists;
+          if (p) p.textContent = t.roleRequirementsForSpecialistsDesc;
+          if (steps.length >= 6) {
+            steps[0].textContent = t.goToProfileRole;
+            steps[1].textContent = t.openAccountInfo;
+            steps[2].textContent = t.tapEditRole;
+            steps[3].textContent = t.selectSpecialist;
+            steps[4].textContent = t.tapSaveRole;
+            steps[5].textContent = t.profileAppearsInList;
+          }
+          const readMore = article2.querySelector(".read-more");
+          if (readMore) readMore.textContent = t.readMore;
+        }
+
+        // Update Article 3: Privacy Settings
+        const article3 = document.querySelectorAll(".article-card")[2];
+        if (article3) {
+          const h3 = article3.querySelector("h3");
+          const p = article3.querySelector("p");
+          const steps = article3.querySelectorAll(".article-steps li");
           if (h3) h3.textContent = t.privacySettings;
           if (p) p.textContent = t.privacySettingsDesc;
           if (steps.length >= 5) {
@@ -849,12 +911,12 @@
             steps[3].textContent = t.manageDataSharing;
             steps[4].textContent = t.reviewConnectedApps;
           }
-          const readMore = article2.querySelector(".read-more");
+          const readMore = article3.querySelector(".read-more");
           if (readMore) readMore.textContent = t.readMore;
         }
 
-        // Update Article 3: Account Security
-        const article3 = document.querySelectorAll(".article-card")[2];
+        // Update Article 4: Account Security
+        const article4 = document.querySelectorAll(".article-card")[3];
         if (article3) {
           const h3 = article3.querySelector("h3");
           const p = article3.querySelector("p");
@@ -892,13 +954,13 @@
           if (readMore) readMore.textContent = t.readMore;
         }
 
-        // Update Article 5: Account Deletion
-        const article5 = document.querySelectorAll(".article-card")[4];
-        if (article5) {
-          const badge = article5.querySelector(".warning-badge");
-          const h3 = article5.querySelector("h3");
-          const p = article5.querySelector("p");
-          const steps = article5.querySelectorAll(".article-steps li");
+        // Update Article 6: Account Deletion
+        const article6 = document.querySelectorAll(".article-card")[5];
+        if (article6) {
+          const badge = article6.querySelector(".warning-badge");
+          const h3 = article6.querySelector("h3");
+          const p = article6.querySelector("p");
+          const steps = article6.querySelectorAll(".article-steps li");
           if (badge) badge.textContent = t.permanentAction;
           if (h3) h3.textContent = t.accountDeletion;
           if (p) p.textContent = t.accountDeletionDesc;
@@ -910,7 +972,7 @@
             steps[4].textContent = t.cannotDeleteActive;
             steps[5].textContent = t.exportBeforeDeletion;
           }
-          const readMore = article5.querySelector(".read-more");
+          const readMore = article6.querySelector(".read-more");
           if (readMore) readMore.textContent = t.readMore;
         }
 
