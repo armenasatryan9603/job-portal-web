@@ -100,6 +100,23 @@
         border: none;
         cursor: pointer;
         color: var(--text);
+        padding: 0.5rem;
+        z-index: 1001;
+      }
+
+      .mobile-menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+
+      .mobile-menu-overlay.active {
+        display: block;
       }
 
       /* Breadcrumbs */
@@ -304,10 +321,43 @@
       @media (max-width: 768px) {
         nav {
           display: none;
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 280px;
+          height: 100vh;
+          background: var(--bg);
+          flex-direction: column;
+          padding: 4rem 1.5rem 1.5rem;
+          box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+          z-index: 1001;
+          transition: right 0.3s ease;
+          overflow-y: auto;
+        }
+
+        nav.active {
+          display: flex;
+          right: 0;
+        }
+
+        nav a {
+          padding: 1rem 0;
+          border-bottom: 1px solid var(--border);
+          width: 100%;
+        }
+
+        nav a:last-child {
+          border-bottom: none;
         }
 
         .mobile-menu-btn {
           display: block;
+          position: relative;
+          z-index: 1001;
+        }
+
+        .header-content {
+          position: relative;
         }
 
         .section-hero-content {
@@ -392,9 +442,7 @@
             stroke="currentColor"
             stroke-width="2"
           >
-            <path
-              d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
-            ></path>
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <path d="M16 10a4 4 0 0 1-8 0"></path>
           </svg>
@@ -511,12 +559,29 @@
 
     <script>
       // Mobile Menu Toggle
-      document
-        .querySelector(".mobile-menu-btn")
-        .addEventListener("click", () => {
-          const nav = document.querySelector("nav");
-          nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+      const nav = document.querySelector("nav");
+      const overlay = document.createElement("div");
+      overlay.className = "mobile-menu-overlay";
+      document.body.appendChild(overlay);
+
+      mobileMenuBtn.addEventListener("click", () => {
+        nav.classList.toggle("active");
+        overlay.classList.toggle("active");
+      });
+
+      overlay.addEventListener("click", () => {
+        nav.classList.remove("active");
+        overlay.classList.remove("active");
+      });
+
+      // Close menu when clicking on a nav link
+      nav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("active");
+          overlay.classList.remove("active");
         });
+      });
 
       // Translations
       const translations = {
@@ -546,12 +611,14 @@
           viewHistory: "View payment history",
           // Article 3
           creditSystem: "Credit System",
-          creditSystemDesc: "Understand how credits work for hiring specialists",
+          creditSystemDesc:
+            "Understand how credits work for hiring specialists",
           purchaseCredits: "Purchase credits to hire specialists",
           creditsDeducted: "Credits are deducted when you accept a proposal",
           unusedCredits: "Unused credits remain in your account",
           refillCredits: "Refill credits anytime from your profile",
-          creditsRefunded: "Credits can be refunded when candidates are rejected",
+          creditsRefunded:
+            "Credits can be refunded when candidates are rejected",
           // Article 4
           orderCancellation: "Order Cancellation",
           orderCancellationDesc: "Cancel orders and applications when needed",
@@ -559,8 +626,10 @@
           selectOrder: "Select the order you want to cancel",
           tapCancel: "Tap 'Cancel Order'",
           confirmCancellation: "Confirm cancellation",
-          cancellationNote: "Note: Cancellation policies may vary by order type",
-          onlyCancelIfNoHire: "Orders can only be canceled if no specialist has been hired",
+          cancellationNote:
+            "Note: Cancellation policies may vary by order type",
+          onlyCancelIfNoHire:
+            "Orders can only be canceled if no specialist has been hired",
           readMore: "Read more →",
           readLess: "Read less ↑",
         },
@@ -576,10 +645,13 @@
           trackingOrders: "Ձեր Պատվերների Հետևում",
           trackingOrdersDesc: "Հսկեք ձեր պատվերների առաջընթացը",
           viewOrdersTab: "Դիտեք բոլոր պատվերները Պատվերներ ներդիրում",
-          seeOrderStatus: "Տեսեք պատվերի կարգավիճակը (սպասվող, ընթացքի մեջ, ավարտված)",
+          seeOrderStatus:
+            "Տեսեք պատվերի կարգավիճակը (սպասվող, ընթացքի մեջ, ավարտված)",
           trackTimeline: "Հետևեք պատվերի ժամանակագրությանը և թարմացումներին",
-          communicateSpecialists: "Հաղորդակցվեք մասնագետների հետ զրույցի միջոցով",
-          receiveNotifications: "Ստացեք ծանուցումներ պատվերների թարմացումների համար",
+          communicateSpecialists:
+            "Հաղորդակցվեք մասնագետների հետ զրույցի միջոցով",
+          receiveNotifications:
+            "Ստացեք ծանուցումներ պատվերների թարմացումների համար",
           // Article 2
           paymentMethods: "Վճարման Մեթոդներ",
           paymentMethodsDesc: "Ավելացրեք և կառավարեք վճարման տարբերակները",
@@ -590,21 +662,27 @@
           viewHistory: "Դիտեք վճարման պատմությունը",
           // Article 3
           creditSystem: "Կրեդիտային Համակարգ",
-          creditSystemDesc: "Հասկացեք, թե ինչպես են աշխատում կրեդիտները մասնագետներ վարձելու համար",
+          creditSystemDesc:
+            "Հասկացեք, թե ինչպես են աշխատում կրեդիտները մասնագետներ վարձելու համար",
           purchaseCredits: "Գնեք կրեդիտներ մասնագետներ վարձելու համար",
-          creditsDeducted: "Կրեդիտները հանվում են, երբ դուք ընդունում եք առաջարկություն",
+          creditsDeducted:
+            "Կրեդիտները հանվում են, երբ դուք ընդունում եք առաջարկություն",
           unusedCredits: "Չօգտագործված կրեդիտները մնում են ձեր հաշվում",
           refillCredits: "Անցկացրեք կրեդիտներ ցանկացած ժամանակ ձեր պրոֆիլից",
-          creditsRefunded: "Կրեդիտները կարող են վերադարձվել, երբ թեկնածուները մերժվում են",
+          creditsRefunded:
+            "Կրեդիտները կարող են վերադարձվել, երբ թեկնածուները մերժվում են",
           // Article 4
           orderCancellation: "Պատվերի Չեղարկում",
-          orderCancellationDesc: "Չեղարկեք պատվերները և դիմումները, երբ անհրաժեշտ է",
+          orderCancellationDesc:
+            "Չեղարկեք պատվերները և դիմումները, երբ անհրաժեշտ է",
           goToOrdersTab: "Գնացեք Պատվերներ ներդիր",
           selectOrder: "Ընտրեք չեղարկելու պատվերը",
           tapCancel: "Սեղմեք 'Չեղարկել Պատվերը'",
           confirmCancellation: "Հաստատեք չեղարկումը",
-          cancellationNote: "Նշում: Չեղարկման քաղաքականությունը կարող է տարբեր լինել ըստ պատվերի տեսակի",
-          onlyCancelIfNoHire: "Պատվերները կարող են չեղարկվել միայն այն դեպքում, եթե մասնագետ չի վարձվել",
+          cancellationNote:
+            "Նշում: Չեղարկման քաղաքականությունը կարող է տարբեր լինել ըստ պատվերի տեսակի",
+          onlyCancelIfNoHire:
+            "Պատվերները կարող են չեղարկվել միայն այն դեպքում, եթե մասնագետ չի վարձվել",
           readMore: "Կարդալ ավելին →",
           readLess: "Կարդալ պակաս ↑",
         },
@@ -620,7 +698,8 @@
           trackingOrders: "Отслеживание Ваших Заказов",
           trackingOrdersDesc: "Отслеживайте прогресс ваших заказов",
           viewOrdersTab: "Просматривайте все заказы на вкладке Заказы",
-          seeOrderStatus: "Смотрите статус заказа (ожидание, в процессе, завершено)",
+          seeOrderStatus:
+            "Смотрите статус заказа (ожидание, в процессе, завершено)",
           trackTimeline: "Отслеживайте временную шкалу заказа и обновления",
           communicateSpecialists: "Общайтесь со специалистами через чат",
           receiveNotifications: "Получайте уведомления об обновлениях заказов",
@@ -634,12 +713,14 @@
           viewHistory: "Просматривайте историю платежей",
           // Article 3
           creditSystem: "Кредитная Система",
-          creditSystemDesc: "Узнайте, как работают кредиты для найма специалистов",
+          creditSystemDesc:
+            "Узнайте, как работают кредиты для найма специалистов",
           purchaseCredits: "Покупайте кредиты для найма специалистов",
           creditsDeducted: "Кредиты списываются при принятии предложения",
           unusedCredits: "Неиспользованные кредиты остаются на вашем счете",
           refillCredits: "Пополняйте кредиты в любое время из профиля",
-          creditsRefunded: "Кредиты могут быть возвращены при отклонении кандидатов",
+          creditsRefunded:
+            "Кредиты могут быть возвращены при отклонении кандидатов",
           // Article 4
           orderCancellation: "Отмена Заказа",
           orderCancellationDesc: "Отменяйте заказы и заявки при необходимости",
@@ -647,8 +728,10 @@
           selectOrder: "Выберите заказ, который хотите отменить",
           tapCancel: "Нажмите 'Отменить заказ'",
           confirmCancellation: "Подтвердите отмену",
-          cancellationNote: "Примечание: Политика отмены может различаться в зависимости от типа заказа",
-          onlyCancelIfNoHire: "Заказы можно отменить только если еще не нанят специалист",
+          cancellationNote:
+            "Примечание: Политика отмены может различаться в зависимости от типа заказа",
+          onlyCancelIfNoHire:
+            "Заказы можно отменить только если еще не нанят специалист",
           readMore: "Читать далее →",
           readLess: "Читать меньше ↑",
         },
@@ -680,7 +763,9 @@
 
         // Update breadcrumbs
         const breadcrumbHome = document.querySelector(".breadcrumbs a");
-        const breadcrumbCurrent = document.querySelector(".breadcrumbs span:last-child");
+        const breadcrumbCurrent = document.querySelector(
+          ".breadcrumbs span:last-child"
+        );
         if (breadcrumbHome) breadcrumbHome.textContent = t.home;
         if (breadcrumbCurrent) breadcrumbCurrent.textContent = t.ordersPayments;
 
@@ -786,4 +871,3 @@
     </script>
   </body>
 </html>
-

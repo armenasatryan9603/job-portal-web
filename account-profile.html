@@ -101,6 +101,23 @@
         border: none;
         cursor: pointer;
         color: var(--text);
+        padding: 0.5rem;
+        z-index: 1001;
+      }
+
+      .mobile-menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+
+      .mobile-menu-overlay.active {
+        display: block;
       }
 
       /* Breadcrumbs */
@@ -308,10 +325,43 @@
       @media (max-width: 768px) {
         nav {
           display: none;
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 280px;
+          height: 100vh;
+          background: var(--bg);
+          flex-direction: column;
+          padding: 4rem 1.5rem 1.5rem;
+          box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+          z-index: 1001;
+          transition: right 0.3s ease;
+          overflow-y: auto;
+        }
+
+        nav.active {
+          display: flex;
+          right: 0;
+        }
+
+        nav a {
+          padding: 1rem 0;
+          border-bottom: 1px solid var(--border);
+          width: 100%;
+        }
+
+        nav a:last-child {
+          border-bottom: none;
         }
 
         .mobile-menu-btn {
           display: block;
+          position: relative;
+          z-index: 1001;
+        }
+
+        .header-content {
+          position: relative;
         }
 
         .section-hero-content {
@@ -523,12 +573,29 @@
 
     <script>
       // Mobile Menu Toggle
-      document
-        .querySelector(".mobile-menu-btn")
-        .addEventListener("click", () => {
-          const nav = document.querySelector("nav");
-          nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+      const nav = document.querySelector("nav");
+      const overlay = document.createElement("div");
+      overlay.className = "mobile-menu-overlay";
+      document.body.appendChild(overlay);
+
+      mobileMenuBtn.addEventListener("click", () => {
+        nav.classList.toggle("active");
+        overlay.classList.toggle("active");
+      });
+
+      overlay.addEventListener("click", () => {
+        nav.classList.remove("active");
+        overlay.classList.remove("active");
+      });
+
+      // Close menu when clicking on a nav link
+      nav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("active");
+          overlay.classList.remove("active");
         });
+      });
 
       // Translations
       const translations = {
@@ -552,7 +619,8 @@
           // Article 2
           privacySettings: "Privacy Settings",
           privacySettingsDesc: "Control who can see your information",
-          manageProfileVisibility: "Manage who can see your profile information",
+          manageProfileVisibility:
+            "Manage who can see your profile information",
           controlOrderVisibility: "Control visibility of your orders",
           adjustNotifications: "Adjust notification preferences",
           manageDataSharing: "Manage data sharing settings",
@@ -602,16 +670,20 @@
           tapEdit: "Սեղմեք 'Խմբագրել' կոճակը",
           updateInfo: "Թարմացրեք ցանկացած տեղեկություն, որը ցանկանում եք փոխել",
           changePhoto: "Ավելացրեք կամ փոխեք ձեր պրոֆիլի լուսանկարը",
-          updateBio: "Թարմացրեք ձեր կենսագրությունը, գտնվելու վայրը կամ կոնտակտային տեղեկությունները",
+          updateBio:
+            "Թարմացրեք ձեր կենսագրությունը, գտնվելու վայրը կամ կոնտակտային տեղեկությունները",
           tapSave: "Սեղմեք 'Պահպանել'՝ փոփոխությունները կիրառելու համար",
           // Article 2
           privacySettings: "Գաղտնիության Կարգավորումներ",
-          privacySettingsDesc: "Վերահսկեք, թե ով կարող է տեսնել ձեր տեղեկությունները",
-          manageProfileVisibility: "Կառավարեք, թե ով կարող է տեսնել ձեր պրոֆիլի տեղեկությունները",
+          privacySettingsDesc:
+            "Վերահսկեք, թե ով կարող է տեսնել ձեր տեղեկությունները",
+          manageProfileVisibility:
+            "Կառավարեք, թե ով կարող է տեսնել ձեր պրոֆիլի տեղեկությունները",
           controlOrderVisibility: "Վերահսկեք ձեր պատվերների տեսանելիությունը",
           adjustNotifications: "Կարգավորեք ծանուցումների նախապատվությունները",
           manageDataSharing: "Կառավարեք տվյալների կիսման կարգավորումները",
-          reviewConnectedApps: "Վերանայեք միացված հավելվածները և ծառայությունները",
+          reviewConnectedApps:
+            "Վերանայեք միացված հավելվածները և ծառայությունները",
           // Article 3
           accountSecurity: "Հաշվի Անվտանգություն",
           accountSecurityDesc: "Պահպանեք ձեր հաշիվը անվտանգ",
@@ -620,7 +692,8 @@
           keepPhoneUpdated: "Պահեք ձեր հեռախոսահամարը թարմացված",
           dontShareOTP: "Մի կիսվեք ձեր OTP կոդերով ոչ ոքի հետ",
           logoutShared: "Դուրս եկեք համօգտագործվող սարքերից",
-          reportSuspicious: "Անմիջապես հաղորդեք կասկածելի գործողությունների մասին",
+          reportSuspicious:
+            "Անմիջապես հաղորդեք կասկածելի գործողությունների մասին",
           // Article 4
           dataExport: "Տվյալների Էքսպորտ",
           dataExportDesc: "Ներբեռնեք ձեր անձնական տվյալների պատճենը",
@@ -635,10 +708,12 @@
           permanentAction: "⚠️ Մշտական Գործողություն",
           goToDeleteAccount: "Գնացեք Կարգավորումներ > Հաշիվ > Ջնջել Հաշիվ",
           typeDelete: "Գրեք 'DELETE' հաստատելու համար",
-          permanentCannotUndo: "Այս գործողությունը մշտական է և չի կարող հետադարձվել",
+          permanentCannotUndo:
+            "Այս գործողությունը մշտական է և չի կարող հետադարձվել",
           allDataDeleted: "Ձեր բոլոր տվյալները կջնջվեն",
           cannotDeleteActive: "Դուք չեք կարող ջնջել հաշիվներ ակտիվ պատվերներով",
-          exportBeforeDeletion: "Էքսպորտեք ձեր տվյալները ջնջումից առաջ, եթե անհրաժեշտ է",
+          exportBeforeDeletion:
+            "Էքսպորտեք ձեր տվյալները ջնջումից առաջ, եթե անհրաժեշտ է",
           readMore: "Կարդալ ավելին →",
           readLess: "Կարդալ պակաս ↑",
         },
@@ -657,16 +732,20 @@
           tapEdit: "Нажмите кнопку 'Редактировать'",
           updateInfo: "Обновите любую информацию, которую хотите изменить",
           changePhoto: "Добавьте или измените фото профиля",
-          updateBio: "Обновите биографию, местоположение или контактную информацию",
+          updateBio:
+            "Обновите биографию, местоположение или контактную информацию",
           tapSave: "Нажмите 'Сохранить', чтобы применить изменения",
           // Article 2
           privacySettings: "Настройки Конфиденциальности",
-          privacySettingsDesc: "Контролируйте, кто может видеть вашу информацию",
-          manageProfileVisibility: "Управляйте тем, кто может видеть информацию вашего профиля",
+          privacySettingsDesc:
+            "Контролируйте, кто может видеть вашу информацию",
+          manageProfileVisibility:
+            "Управляйте тем, кто может видеть информацию вашего профиля",
           controlOrderVisibility: "Контролируйте видимость ваших заказов",
           adjustNotifications: "Настройте предпочтения уведомлений",
           manageDataSharing: "Управляйте настройками обмена данными",
-          reviewConnectedApps: "Просматривайте подключенные приложения и сервисы",
+          reviewConnectedApps:
+            "Просматривайте подключенные приложения и сервисы",
           // Article 3
           accountSecurity: "Безопасность Аккаунта",
           accountSecurityDesc: "Сохраняйте аккаунт в безопасности",
@@ -688,12 +767,16 @@
           accountDeletion: "Удаление Аккаунта",
           accountDeletionDesc: "Навсегда удалите ваш аккаунт и все данные",
           permanentAction: "⚠️ Необратимое Действие",
-          goToDeleteAccount: "Перейдите в Настройки > Аккаунт > Удалить аккаунт",
+          goToDeleteAccount:
+            "Перейдите в Настройки > Аккаунт > Удалить аккаунт",
           typeDelete: "Введите 'DELETE' для подтверждения",
-          permanentCannotUndo: "Это действие необратимо и не может быть отменено",
+          permanentCannotUndo:
+            "Это действие необратимо и не может быть отменено",
           allDataDeleted: "Все ваши данные будут удалены",
-          cannotDeleteActive: "Вы не можете удалить аккаунты с активными заказами",
-          exportBeforeDeletion: "Обязательно экспортируйте данные перед удалением, если необходимо",
+          cannotDeleteActive:
+            "Вы не можете удалить аккаунты с активными заказами",
+          exportBeforeDeletion:
+            "Обязательно экспортируйте данные перед удалением, если необходимо",
           readMore: "Читать далее →",
           readLess: "Читать меньше ↑",
         },
@@ -725,7 +808,9 @@
 
         // Update breadcrumbs
         const breadcrumbHome = document.querySelector(".breadcrumbs a");
-        const breadcrumbCurrent = document.querySelector(".breadcrumbs span:last-child");
+        const breadcrumbCurrent = document.querySelector(
+          ".breadcrumbs span:last-child"
+        );
         if (breadcrumbHome) breadcrumbHome.textContent = t.home;
         if (breadcrumbCurrent) breadcrumbCurrent.textContent = t.accountProfile;
 
@@ -854,4 +939,3 @@
     </script>
   </body>
 </html>
-

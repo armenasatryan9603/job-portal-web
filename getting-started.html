@@ -100,6 +100,23 @@
         border: none;
         cursor: pointer;
         color: var(--text);
+        padding: 0.5rem;
+        z-index: 1001;
+      }
+
+      .mobile-menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+
+      .mobile-menu-overlay.active {
+        display: block;
       }
 
       /* Breadcrumbs */
@@ -332,10 +349,43 @@
       @media (max-width: 768px) {
         nav {
           display: none;
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 280px;
+          height: 100vh;
+          background: var(--bg);
+          flex-direction: column;
+          padding: 4rem 1.5rem 1.5rem;
+          box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+          z-index: 1001;
+          transition: right 0.3s ease;
+          overflow-y: auto;
+        }
+
+        nav.active {
+          display: flex;
+          right: 0;
+        }
+
+        nav a {
+          padding: 1rem 0;
+          border-bottom: 1px solid var(--border);
+          width: 100%;
+        }
+
+        nav a:last-child {
+          border-bottom: none;
         }
 
         .mobile-menu-btn {
           display: block;
+          position: relative;
+          z-index: 1001;
+        }
+
+        .header-content {
+          position: relative;
         }
 
         .section-hero-content {
@@ -452,41 +502,44 @@
               Creating an account on JobPortal is quick and easy. Follow these
               steps to get started:
             </p>
-            <ol style="padding-left: 1.5rem; margin-top: 0.5rem;">
-              <li style="margin-bottom: 0.5rem;">
+            <ol style="padding-left: 1.5rem; margin-top: 0.5rem">
+              <li style="margin-bottom: 0.5rem">
                 <strong>Download the App:</strong> Get JobPortal from the App
                 Store (iOS) or Google Play Store (Android).
               </li>
-              <li style="margin-bottom: 0.5rem;">
+              <li style="margin-bottom: 0.5rem">
                 <strong>Open and Sign Up:</strong> Launch the app and tap on
                 'Sign Up' or 'Get Started' button on the welcome screen.
               </li>
-              <li style="margin-bottom: 0.5rem;">
+              <li style="margin-bottom: 0.5rem">
                 <strong>Enter Your Information:</strong> Provide your phone
                 number and full name. Make sure your phone number is correct as
                 you'll need it for verification.
               </li>
-              <li style="margin-bottom: 0.5rem;">
-                <strong>Verify Your Phone:</strong> You'll receive an OTP (One-Time
-                Password) via SMS. Enter the code to verify your phone number.
+              <li style="margin-bottom: 0.5rem">
+                <strong>Verify Your Phone:</strong> You'll receive an OTP
+                (One-Time Password) via SMS. Enter the code to verify your phone
+                number.
               </li>
-              <li style="margin-bottom: 0.5rem;">
-                <strong>Complete Your Profile:</strong> Add additional information
-                like your bio, location, and profile photo to help specialists
-                find you.
+              <li style="margin-bottom: 0.5rem">
+                <strong>Complete Your Profile:</strong> Add additional
+                information like your bio, location, and profile photo to help
+                specialists find you.
               </li>
-              <li style="margin-bottom: 0.5rem;">
+              <li style="margin-bottom: 0.5rem">
                 <strong>Start Using JobPortal:</strong> Once your profile is set
                 up, you can start browsing services, placing orders, and
                 connecting with specialists!
               </li>
             </ol>
-            <p style="margin-top: 1rem;">
+            <p style="margin-top: 1rem">
               <strong>Need Help?</strong> If you encounter any issues during
               account creation, check our FAQ or contact our support team.
             </p>
           </div>
-          <span class="read-more" onclick="toggleArticle(this)">Read more →</span>
+          <span class="read-more" onclick="toggleArticle(this)"
+            >Read more →</span
+          >
         </div>
 
         <!-- Article 2: Finding Services -->
@@ -503,43 +556,45 @@
           <div class="article-details">
             <h4>How to Find the Right Service</h4>
             <p>
-              JobPortal offers multiple ways to discover services that match your
-              needs:
+              JobPortal offers multiple ways to discover services that match
+              your needs:
             </p>
-            <ul style="padding-left: 1.5rem; margin-top: 0.5rem;">
-              <li style="margin-bottom: 0.5rem;">
+            <ul style="padding-left: 1.5rem; margin-top: 0.5rem">
+              <li style="margin-bottom: 0.5rem">
                 <strong>Browse by Category:</strong> Navigate through different
-                service categories like Web Development, Mobile Apps, Design, etc.
-                to see all available options.
+                service categories like Web Development, Mobile Apps, Design,
+                etc. to see all available options.
               </li>
-              <li style="margin-bottom: 0.5rem;">
+              <li style="margin-bottom: 0.5rem">
                 <strong>Search Functionality:</strong> Use the search bar at the
                 top to type specific keywords related to the service you need.
                 The search will show relevant results instantly.
               </li>
-              <li style="margin-bottom: 0.5rem;">
+              <li style="margin-bottom: 0.5rem">
                 <strong>Advanced Filters:</strong> Refine your search using
                 filters for location (to find local specialists), price range,
                 and ratings to find the best match for your budget and quality
                 expectations.
               </li>
-              <li style="margin-bottom: 0.5rem;">
-                <strong>Specialist Profiles:</strong> Click on any service to view
-                detailed information, see specialist profiles, read reviews from
-                previous clients, and check their portfolio.
+              <li style="margin-bottom: 0.5rem">
+                <strong>Specialist Profiles:</strong> Click on any service to
+                view detailed information, see specialist profiles, read reviews
+                from previous clients, and check their portfolio.
               </li>
-              <li style="margin-bottom: 0.5rem;">
-                <strong>Save Favorites:</strong> Found a service you like? Save it
-                to your favorites for easy access later. This helps you compare
-                options before making a decision.
+              <li style="margin-bottom: 0.5rem">
+                <strong>Save Favorites:</strong> Found a service you like? Save
+                it to your favorites for easy access later. This helps you
+                compare options before making a decision.
               </li>
             </ul>
-            <p style="margin-top: 1rem;">
+            <p style="margin-top: 1rem">
               <strong>Tip:</strong> Read reviews and check specialist ratings to
               ensure you're choosing a reliable professional for your project.
             </p>
           </div>
-          <span class="read-more" onclick="toggleArticle(this)">Read more →</span>
+          <span class="read-more" onclick="toggleArticle(this)"
+            >Read more →</span
+          >
         </div>
 
         <!-- Article 3: Making Your First Order -->
@@ -561,54 +616,56 @@
               Placing your first order on JobPortal is straightforward. Here's
               what to expect:
             </p>
-            <ol style="padding-left: 1.5rem; margin-top: 0.5rem;">
-              <li style="margin-bottom: 0.5rem;">
-                <strong>Find a Service:</strong> Browse or search for the service
-                you need. Make sure to read the service description and check
-                specialist profiles.
+            <ol style="padding-left: 1.5rem; margin-top: 0.5rem">
+              <li style="margin-bottom: 0.5rem">
+                <strong>Find a Service:</strong> Browse or search for the
+                service you need. Make sure to read the service description and
+                check specialist profiles.
               </li>
-              <li style="margin-bottom: 0.5rem;">
-                <strong>View Details:</strong> Tap on the service card to see full
-                details, pricing, specialist information, and reviews from other
-                clients.
+              <li style="margin-bottom: 0.5rem">
+                <strong>View Details:</strong> Tap on the service card to see
+                full details, pricing, specialist information, and reviews from
+                other clients.
               </li>
-              <li style="margin-bottom: 0.5rem;">
+              <li style="margin-bottom: 0.5rem">
                 <strong>Start Order:</strong> Click the 'Order' or 'Hire' button
                 to begin the ordering process.
               </li>
-              <li style="margin-bottom: 0.5rem;">
+              <li style="margin-bottom: 0.5rem">
                 <strong>Provide Order Details:</strong> Fill in all required
                 information including:
-                <ul style="margin-top: 0.25rem; padding-left: 1.5rem;">
+                <ul style="margin-top: 0.25rem; padding-left: 1.5rem">
                   <li>Date and time preferences</li>
                   <li>Location (if applicable)</li>
                   <li>Specific requirements or instructions</li>
                   <li>Budget range</li>
                 </ul>
               </li>
-              <li style="margin-bottom: 0.5rem;">
+              <li style="margin-bottom: 0.5rem">
                 <strong>Review and Confirm:</strong> Double-check all your order
                 details before confirming. Once confirmed, your order will be
                 posted and visible to specialists.
               </li>
-              <li style="margin-bottom: 0.5rem;">
+              <li style="margin-bottom: 0.5rem">
                 <strong>Receive Proposals:</strong> Specialists will review your
-                order and submit proposals. You'll receive notifications when new
-                proposals arrive.
+                order and submit proposals. You'll receive notifications when
+                new proposals arrive.
               </li>
-              <li style="margin-bottom: 0.5rem;">
+              <li style="margin-bottom: 0.5rem">
                 <strong>Choose and Communicate:</strong> Review all proposals,
                 compare specialists, and select the best match. Once selected,
                 you can communicate directly through the in-app chat feature.
               </li>
             </ol>
-            <p style="margin-top: 1rem;">
-              <strong>Important:</strong> Make sure you have sufficient credits in
-              your account before placing an order. Credits are required to hire
-              specialists.
+            <p style="margin-top: 1rem">
+              <strong>Important:</strong> Make sure you have sufficient credits
+              in your account before placing an order. Credits are required to
+              hire specialists.
             </p>
           </div>
-          <span class="read-more" onclick="toggleArticle(this)">Read more →</span>
+          <span class="read-more" onclick="toggleArticle(this)"
+            >Read more →</span
+          >
         </div>
 
         <!-- Article 4: App Permissions -->
@@ -625,30 +682,31 @@
           <div class="article-details">
             <h4>Why We Need These Permissions</h4>
             <p>
-              JobPortal requires certain permissions to provide you with the best
-              experience. Here's why each permission is needed:
+              JobPortal requires certain permissions to provide you with the
+              best experience. Here's why each permission is needed:
             </p>
-            <ul style="padding-left: 1.5rem; margin-top: 0.5rem;">
-              <li style="margin-bottom: 0.75rem;">
-                <strong>Camera Access:</strong> Allows you to take photos directly
-                within the app when creating orders or updating your profile. This
-                is essential for adding visual context to your service requests.
+            <ul style="padding-left: 1.5rem; margin-top: 0.5rem">
+              <li style="margin-bottom: 0.75rem">
+                <strong>Camera Access:</strong> Allows you to take photos
+                directly within the app when creating orders or updating your
+                profile. This is essential for adding visual context to your
+                service requests.
               </li>
-              <li style="margin-bottom: 0.75rem;">
+              <li style="margin-bottom: 0.75rem">
                 <strong>Photo Library Access:</strong> Enables you to upload
                 existing photos from your device. Useful for sharing reference
                 images, examples, or profile pictures.
               </li>
-              <li style="margin-bottom: 0.75rem;">
-                <strong>Location Access:</strong> Helps set your profile location
-                and find local specialists. This improves matching accuracy and
-                allows you to discover nearby service providers. Your exact
-                location is never shared without your permission.
+              <li style="margin-bottom: 0.75rem">
+                <strong>Location Access:</strong> Helps set your profile
+                location and find local specialists. This improves matching
+                accuracy and allows you to discover nearby service providers.
+                Your exact location is never shared without your permission.
               </li>
-              <li style="margin-bottom: 0.75rem;">
-                <strong>Notifications:</strong> Keeps you informed about important
-                updates including:
-                <ul style="margin-top: 0.25rem; padding-left: 1.5rem;">
+              <li style="margin-bottom: 0.75rem">
+                <strong>Notifications:</strong> Keeps you informed about
+                important updates including:
+                <ul style="margin-top: 0.25rem; padding-left: 1.5rem">
                   <li>New proposals on your orders</li>
                   <li>Messages from specialists</li>
                   <li>Order status changes</li>
@@ -656,19 +714,21 @@
                 </ul>
               </li>
             </ul>
-            <p style="margin-top: 1rem;">
+            <p style="margin-top: 1rem">
               <strong>Managing Permissions:</strong> You can change these
               permissions at any time in your device settings. Go to Settings >
               JobPortal > Permissions to modify access. Note that some features
               may not work properly if permissions are denied.
             </p>
-            <p style="margin-top: 0.5rem;">
+            <p style="margin-top: 0.5rem">
               <strong>Privacy:</strong> We respect your privacy. Permissions are
               only used for the stated purposes and we never access your data
               without your explicit action.
             </p>
           </div>
-          <span class="read-more" onclick="toggleArticle(this)">Read more →</span>
+          <span class="read-more" onclick="toggleArticle(this)"
+            >Read more →</span
+          >
         </div>
       </div>
     </div>
@@ -710,12 +770,29 @@
 
     <script>
       // Mobile Menu Toggle
-      document
-        .querySelector(".mobile-menu-btn")
-        .addEventListener("click", () => {
-          const nav = document.querySelector("nav");
-          nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+      const nav = document.querySelector("nav");
+      const overlay = document.createElement("div");
+      overlay.className = "mobile-menu-overlay";
+      document.body.appendChild(overlay);
+
+      mobileMenuBtn.addEventListener("click", () => {
+        nav.classList.toggle("active");
+        overlay.classList.toggle("active");
+      });
+
+      overlay.addEventListener("click", () => {
+        nav.classList.remove("active");
+        overlay.classList.remove("active");
+      });
+
+      // Close menu when clicking on a nav link
+      nav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("active");
+          overlay.classList.remove("active");
         });
+      });
 
       // Translations
       const translations = {
@@ -729,7 +806,8 @@
           home: "Home",
           // Article 1
           howToCreateAccount: "How to Create an Account",
-          howToCreateAccountDesc: "Learn how to set up your profile and get started with JobPortal",
+          howToCreateAccountDesc:
+            "Learn how to set up your profile and get started with JobPortal",
           step1Download: "Download and open the app",
           step2SignUp: "Tap on 'Sign Up' or 'Get Started'",
           step3EnterPhone: "Enter your phone number and name",
@@ -737,42 +815,58 @@
           step5CompleteProfile: "Complete your profile",
           step6StartExploring: "Start exploring services!",
           detailedInstructions: "Detailed Instructions",
-          createAccountIntro: "Creating an account on JobPortal is quick and easy. Follow these steps to get started:",
+          createAccountIntro:
+            "Creating an account on JobPortal is quick and easy. Follow these steps to get started:",
           downloadApp: "Download the App:",
-          downloadAppDesc: "Get JobPortal from the App Store (iOS) or Google Play Store (Android).",
+          downloadAppDesc:
+            "Get JobPortal from the App Store (iOS) or Google Play Store (Android).",
           openSignUp: "Open and Sign Up:",
-          openSignUpDesc: "Launch the app and tap on 'Sign Up' or 'Get Started' button on the welcome screen.",
+          openSignUpDesc:
+            "Launch the app and tap on 'Sign Up' or 'Get Started' button on the welcome screen.",
           enterInfo: "Enter Your Information:",
-          enterInfoDesc: "Provide your phone number and full name. Make sure your phone number is correct as you'll need it for verification.",
+          enterInfoDesc:
+            "Provide your phone number and full name. Make sure your phone number is correct as you'll need it for verification.",
           verifyPhone: "Verify Your Phone:",
-          verifyPhoneDesc: "You'll receive an OTP (One-Time Password) via SMS. Enter the code to verify your phone number.",
+          verifyPhoneDesc:
+            "You'll receive an OTP (One-Time Password) via SMS. Enter the code to verify your phone number.",
           completeProfile: "Complete Your Profile:",
-          completeProfileDesc: "Add additional information like your bio, location, and profile photo to help specialists find you.",
+          completeProfileDesc:
+            "Add additional information like your bio, location, and profile photo to help specialists find you.",
           startUsing: "Start Using JobPortal:",
-          startUsingDesc: "Once your profile is set up, you can start browsing services, placing orders, and connecting with specialists!",
+          startUsingDesc:
+            "Once your profile is set up, you can start browsing services, placing orders, and connecting with specialists!",
           needHelp: "Need Help?",
-          needHelpDesc: "If you encounter any issues during account creation, check our FAQ or contact our support team.",
+          needHelpDesc:
+            "If you encounter any issues during account creation, check our FAQ or contact our support team.",
           // Article 2
           findingServices: "Finding Services",
-          findingServicesDesc: "Discover available services and specialists on JobPortal",
+          findingServicesDesc:
+            "Discover available services and specialists on JobPortal",
           browseByCategory: "Browse services by category",
           useSearchBar: "Use the search bar to find specific services",
           filterServices: "Filter by location, price, or ratings",
           viewProfiles: "View specialist profiles and reviews",
           saveFavorites: "Save favorite services for later",
           howToFindService: "How to Find the Right Service",
-          findServiceIntro: "JobPortal offers multiple ways to discover services that match your needs:",
+          findServiceIntro:
+            "JobPortal offers multiple ways to discover services that match your needs:",
           browseCategory: "Browse by Category:",
-          browseCategoryDesc: "Navigate through different service categories like Web Development, Mobile Apps, Design, etc. to see all available options.",
+          browseCategoryDesc:
+            "Navigate through different service categories like Web Development, Mobile Apps, Design, etc. to see all available options.",
           searchFunctionality: "Search Functionality:",
-          searchFunctionalityDesc: "Use the search bar at the top to type specific keywords related to the service you need. The search will show relevant results instantly.",
+          searchFunctionalityDesc:
+            "Use the search bar at the top to type specific keywords related to the service you need. The search will show relevant results instantly.",
           advancedFilters: "Advanced Filters:",
-          advancedFiltersDesc: "Refine your search using filters for location (to find local specialists), price range, and ratings to find the best match for your budget and quality expectations.",
+          advancedFiltersDesc:
+            "Refine your search using filters for location (to find local specialists), price range, and ratings to find the best match for your budget and quality expectations.",
           specialistProfiles: "Specialist Profiles:",
-          specialistProfilesDesc: "Click on any service to view detailed information, see specialist profiles, read reviews from previous clients, and check their portfolio.",
-          saveFavoritesDesc: "Found a service you like? Save it to your favorites for easy access later. This helps you compare options before making a decision.",
+          specialistProfilesDesc:
+            "Click on any service to view detailed information, see specialist profiles, read reviews from previous clients, and check their portfolio.",
+          saveFavoritesDesc:
+            "Found a service you like? Save it to your favorites for easy access later. This helps you compare options before making a decision.",
           tip: "Tip:",
-          tipDesc: "Read reviews and check specialist ratings to ensure you're choosing a reliable professional for your project.",
+          tipDesc:
+            "Read reviews and check specialist ratings to ensure you're choosing a reliable professional for your project.",
           // Article 3
           makingFirstOrder: "Making Your First Order",
           makingFirstOrderDesc: "Step-by-step guide to placing an order",
@@ -784,13 +878,17 @@
           waitProposals: "Wait for specialist proposals",
           chooseSpecialist: "Choose a specialist and communicate",
           completeOrderProcess: "Complete Order Process",
-          orderProcessIntro: "Placing your first order on JobPortal is straightforward. Here's what to expect:",
+          orderProcessIntro:
+            "Placing your first order on JobPortal is straightforward. Here's what to expect:",
           findServiceStep: "Find a Service:",
-          findServiceStepDesc: "Browse or search for the service you need. Make sure to read the service description and check specialist profiles.",
+          findServiceStepDesc:
+            "Browse or search for the service you need. Make sure to read the service description and check specialist profiles.",
           viewDetailsStep: "View Details:",
-          viewDetailsStepDesc: "Tap on the service card to see full details, pricing, specialist information, and reviews from other clients.",
+          viewDetailsStepDesc:
+            "Tap on the service card to see full details, pricing, specialist information, and reviews from other clients.",
           startOrder: "Start Order:",
-          startOrderDesc: "Click the 'Order' or 'Hire' button to begin the ordering process.",
+          startOrderDesc:
+            "Click the 'Order' or 'Hire' button to begin the ordering process.",
           provideDetails: "Provide Order Details:",
           provideDetailsDesc: "Fill in all required information including:",
           dateTime: "Date and time preferences",
@@ -798,39 +896,51 @@
           requirements: "Specific requirements or instructions",
           budget: "Budget range",
           reviewConfirm: "Review and Confirm:",
-          reviewConfirmDesc: "Double-check all your order details before confirming. Once confirmed, your order will be posted and visible to specialists.",
+          reviewConfirmDesc:
+            "Double-check all your order details before confirming. Once confirmed, your order will be posted and visible to specialists.",
           receiveProposals: "Receive Proposals:",
-          receiveProposalsDesc: "Specialists will review your order and submit proposals. You'll receive notifications when new proposals arrive.",
+          receiveProposalsDesc:
+            "Specialists will review your order and submit proposals. You'll receive notifications when new proposals arrive.",
           chooseCommunicate: "Choose and Communicate:",
-          chooseCommunicateDesc: "Review all proposals, compare specialists, and select the best match. Once selected, you can communicate directly through the in-app chat feature.",
+          chooseCommunicateDesc:
+            "Review all proposals, compare specialists, and select the best match. Once selected, you can communicate directly through the in-app chat feature.",
           important: "Important:",
-          importantDesc: "Make sure you have sufficient credits in your account before placing an order. Credits are required to hire specialists.",
+          importantDesc:
+            "Make sure you have sufficient credits in your account before placing an order. Credits are required to hire specialists.",
           // Article 4
           appPermissions: "App Permissions",
           appPermissionsDesc: "Understand what permissions our app needs",
           cameraPermission: "Camera - for taking photos for orders",
           photoLibraryPermission: "Photo Library - for uploading images",
           locationPermission: "Location - for setting your profile location",
-          notificationsPermission: "Notifications - for order updates and messages",
+          notificationsPermission:
+            "Notifications - for order updates and messages",
           managePermissions: "Manage permissions in device settings",
           whyWeNeedPermissions: "Why We Need These Permissions",
-          permissionsIntro: "JobPortal requires certain permissions to provide you with the best experience. Here's why each permission is needed:",
+          permissionsIntro:
+            "JobPortal requires certain permissions to provide you with the best experience. Here's why each permission is needed:",
           cameraAccess: "Camera Access:",
-          cameraAccessDesc: "Allows you to take photos directly within the app when creating orders or updating your profile. This is essential for adding visual context to your service requests.",
+          cameraAccessDesc:
+            "Allows you to take photos directly within the app when creating orders or updating your profile. This is essential for adding visual context to your service requests.",
           photoLibraryAccess: "Photo Library Access:",
-          photoLibraryAccessDesc: "Enables you to upload existing photos from your device. Useful for sharing reference images, examples, or profile pictures.",
+          photoLibraryAccessDesc:
+            "Enables you to upload existing photos from your device. Useful for sharing reference images, examples, or profile pictures.",
           locationAccess: "Location Access:",
-          locationAccessDesc: "Helps set your profile location and find local specialists. This improves matching accuracy and allows you to discover nearby service providers. Your exact location is never shared without your permission.",
+          locationAccessDesc:
+            "Helps set your profile location and find local specialists. This improves matching accuracy and allows you to discover nearby service providers. Your exact location is never shared without your permission.",
           notificationsAccess: "Notifications:",
-          notificationsAccessDesc: "Keeps you informed about important updates including:",
+          notificationsAccessDesc:
+            "Keeps you informed about important updates including:",
           newProposals: "New proposals on your orders",
           messages: "Messages from specialists",
           statusChanges: "Order status changes",
           paymentConfirmations: "Payment confirmations",
           managingPermissions: "Managing Permissions:",
-          managingPermissionsDesc: "You can change these permissions at any time in your device settings. Go to Settings > JobPortal > Permissions to modify access. Note that some features may not work properly if permissions are denied.",
+          managingPermissionsDesc:
+            "You can change these permissions at any time in your device settings. Go to Settings > JobPortal > Permissions to modify access. Note that some features may not work properly if permissions are denied.",
           privacy: "Privacy:",
-          privacyDesc: "We respect your privacy. Permissions are only used for the stated purposes and we never access your data without your explicit action.",
+          privacyDesc:
+            "We respect your privacy. Permissions are only used for the stated purposes and we never access your data without your explicit action.",
           readMore: "Read more →",
           readLess: "Read less ↑",
         },
@@ -844,7 +954,8 @@
           home: "Գլխավոր",
           // Article 1
           howToCreateAccount: "Ինչպես ստեղծել հաշիվ",
-          howToCreateAccountDesc: "Սովորեք, թե ինչպես կարգավորել ձեր պրոֆիլը և սկսել JobPortal-ով",
+          howToCreateAccountDesc:
+            "Սովորեք, թե ինչպես կարգավորել ձեր պրոֆիլը և սկսել JobPortal-ով",
           step1Download: "Ներբեռնեք և բացեք հավելվածը",
           step2SignUp: "Սեղմեք 'Գրանցվել' կամ 'Սկսել'",
           step3EnterPhone: "Մուտքագրեք ձեր հեռախոսահամարը և անունը",
@@ -852,42 +963,60 @@
           step5CompleteProfile: "Լրացրեք ձեր պրոֆիլը",
           step6StartExploring: "Սկսեք ուսումնասիրել ծառայությունները:",
           detailedInstructions: "Մանրամասն Հրահանգներ",
-          createAccountIntro: "JobPortal-ում հաշիվ ստեղծելը արագ և հեշտ է: Հետևեք այս քայլերին՝ սկսելու համար:",
+          createAccountIntro:
+            "JobPortal-ում հաշիվ ստեղծելը արագ և հեշտ է: Հետևեք այս քայլերին՝ սկսելու համար:",
           downloadApp: "Ներբեռնեք Հավելվածը:",
-          downloadAppDesc: "Ստացեք JobPortal-ը App Store-ից (iOS) կամ Google Play Store-ից (Android):",
+          downloadAppDesc:
+            "Ստացեք JobPortal-ը App Store-ից (iOS) կամ Google Play Store-ից (Android):",
           openSignUp: "Բացեք և Գրանցվեք:",
-          openSignUpDesc: "Բացեք հավելվածը և սեղմեք 'Գրանցվել' կամ 'Սկսել' կոճակը ողջույնի էկրանին:",
+          openSignUpDesc:
+            "Բացեք հավելվածը և սեղմեք 'Գրանցվել' կամ 'Սկսել' կոճակը ողջույնի էկրանին:",
           enterInfo: "Մուտքագրեք Ձեր Տեղեկությունները:",
-          enterInfoDesc: "Տրամադրեք ձեր հեռախոսահամարը և ամբողջական անունը: Համոզվեք, որ ձեր հեռախոսահամարը ճիշտ է, քանի որ այն ձեզ անհրաժեշտ կլինի հաստատման համար:",
+          enterInfoDesc:
+            "Տրամադրեք ձեր հեռախոսահամարը և ամբողջական անունը: Համոզվեք, որ ձեր հեռախոսահամարը ճիշտ է, քանի որ այն ձեզ անհրաժեշտ կլինի հաստատման համար:",
           verifyPhone: "Հաստատեք Ձեր Հեռախոսահամարը:",
-          verifyPhoneDesc: "Դուք կստանաք OTP (Միանգամյա Գաղտնաբառ) SMS-ով: Մուտքագրեք կոդը՝ ձեր հեռախոսահամարը հաստատելու համար:",
+          verifyPhoneDesc:
+            "Դուք կստանաք OTP (Միանգամյա Գաղտնաբառ) SMS-ով: Մուտքագրեք կոդը՝ ձեր հեռախոսահամարը հաստատելու համար:",
           completeProfile: "Լրացրեք Ձեր Պրոֆիլը:",
-          completeProfileDesc: "Ավելացրեք լրացուցիչ տեղեկություններ, ինչպիսիք են ձեր կենսագրությունը, գտնվելու վայրը և պրոֆիլի լուսանկարը՝ մասնագետներին օգնելու համար:",
+          completeProfileDesc:
+            "Ավելացրեք լրացուցիչ տեղեկություններ, ինչպիսիք են ձեր կենսագրությունը, գտնվելու վայրը և պրոֆիլի լուսանկարը՝ մասնագետներին օգնելու համար:",
           startUsing: "Սկսեք Օգտագործել JobPortal-ը:",
-          startUsingDesc: "Պրոֆիլը կարգավորելուց հետո կարող եք սկսել զննել ծառայությունները, կատարել պատվերներ և կապ հաստատել մասնագետների հետ:",
+          startUsingDesc:
+            "Պրոֆիլը կարգավորելուց հետո կարող եք սկսել զննել ծառայությունները, կատարել պատվերներ և կապ հաստատել մասնագետների հետ:",
           needHelp: "Օգնության Կարիք:",
-          needHelpDesc: "Եթե հաշիվ ստեղծելիս խնդիրներ եք հանդիպում, ստուգեք մեր ՀՏՀ-ն կամ կապ հաստատեք մեր աջակցության թիմի հետ:",
+          needHelpDesc:
+            "Եթե հաշիվ ստեղծելիս խնդիրներ եք հանդիպում, ստուգեք մեր ՀՏՀ-ն կամ կապ հաստատեք մեր աջակցության թիմի հետ:",
           // Article 2
           findingServices: "Ծառայությունների Որոնում",
-          findingServicesDesc: "Բացահայտեք հասանելի ծառայությունները և մասնագետները JobPortal-ում",
+          findingServicesDesc:
+            "Բացահայտեք հասանելի ծառայությունները և մասնագետները JobPortal-ում",
           browseByCategory: "Զննեք ծառայությունները ըստ կատեգորիայի",
-          useSearchBar: "Օգտագործեք որոնման տողը՝ կոնկրետ ծառայություններ գտնելու համար",
+          useSearchBar:
+            "Օգտագործեք որոնման տողը՝ կոնկրետ ծառայություններ գտնելու համար",
           filterServices: "Ֆիլտրեք ըստ գտնվելու վայրի, գնի կամ գնահատականների",
           viewProfiles: "Դիտեք մասնագետների պրոֆիլները և ակնարկները",
-          saveFavorites: "Պահեք սիրած ծառայությունները հետագա օգտագործման համար",
+          saveFavorites:
+            "Պահեք սիրած ծառայությունները հետագա օգտագործման համար",
           howToFindService: "Ինչպես Գտնել Ճիշտ Ծառայությունը",
-          findServiceIntro: "JobPortal-ը առաջարկում է բազմաթիվ եղանակներ՝ ձեր կարիքներին համապատասխան ծառայություններ բացահայտելու համար:",
+          findServiceIntro:
+            "JobPortal-ը առաջարկում է բազմաթիվ եղանակներ՝ ձեր կարիքներին համապատասխան ծառայություններ բացահայտելու համար:",
           browseCategory: "Զննել ըստ Կատեգորիայի:",
-          browseCategoryDesc: "Նավարկեք տարբեր ծառայությունների կատեգորիաներով, ինչպիսիք են Վեբ Զարգացում, Բջջային Հավելվածներ, Դիզայն և այլն, բոլոր հասանելի տարբերակները տեսնելու համար:",
+          browseCategoryDesc:
+            "Նավարկեք տարբեր ծառայությունների կատեգորիաներով, ինչպիսիք են Վեբ Զարգացում, Բջջային Հավելվածներ, Դիզայն և այլն, բոլոր հասանելի տարբերակները տեսնելու համար:",
           searchFunctionality: "Որոնման Ֆունկցիոնալություն:",
-          searchFunctionalityDesc: "Օգտագործեք վերևի որոնման տողը՝ մուտքագրելու համար կոնկրետ բանալի բառեր, որոնք կապված են ձեզ անհրաժեշտ ծառայության հետ: Որոնումը ակնթարթորեն ցույց կտա համապատասխան արդյունքներ:",
+          searchFunctionalityDesc:
+            "Օգտագործեք վերևի որոնման տողը՝ մուտքագրելու համար կոնկրետ բանալի բառեր, որոնք կապված են ձեզ անհրաժեշտ ծառայության հետ: Որոնումը ակնթարթորեն ցույց կտա համապատասխան արդյունքներ:",
           advancedFilters: "Ընդլայնված Ֆիլտրեր:",
-          advancedFiltersDesc: "Նրբացրեք ձեր որոնումը՝ օգտագործելով գտնվելու վայրի (տեղական մասնագետներ գտնելու համար), գնային միջակայքի և գնահատականների ֆիլտրեր՝ ձեր բյուջեին և որակի ակնկալիքներին համապատասխան լավագույն համընկնումը գտնելու համար:",
+          advancedFiltersDesc:
+            "Նրբացրեք ձեր որոնումը՝ օգտագործելով գտնվելու վայրի (տեղական մասնագետներ գտնելու համար), գնային միջակայքի և գնահատականների ֆիլտրեր՝ ձեր բյուջեին և որակի ակնկալիքներին համապատասխան լավագույն համընկնումը գտնելու համար:",
           specialistProfiles: "Մասնագետների Պրոֆիլներ:",
-          specialistProfilesDesc: "Սեղմեք ցանկացած ծառայության վրա՝ մանրամասն տեղեկություններ, մասնագետների պրոֆիլներ, նախկին հաճախորդների ակնարկներ և նրանց պորտֆոլիո դիտելու համար:",
-          saveFavoritesDesc: "Գտե՞լ եք ձեզ դուր եկած ծառայություն: Պահեք այն ձեր սիրածներում՝ հետագա հեշտ մուտքի համար: Սա օգնում է համեմատել տարբերակները որոշում կայացնելուց առաջ:",
+          specialistProfilesDesc:
+            "Սեղմեք ցանկացած ծառայության վրա՝ մանրամասն տեղեկություններ, մասնագետների պրոֆիլներ, նախկին հաճախորդների ակնարկներ և նրանց պորտֆոլիո դիտելու համար:",
+          saveFavoritesDesc:
+            "Գտե՞լ եք ձեզ դուր եկած ծառայություն: Պահեք այն ձեր սիրածներում՝ հետագա հեշտ մուտքի համար: Սա օգնում է համեմատել տարբերակները որոշում կայացնելուց առաջ:",
           tip: "Հուշում:",
-          tipDesc: "Կարդացեք ակնարկներ և ստուգեք մասնագետների գնահատականները՝ համոզվելու համար, որ ընտրում եք ձեր նախագծի համար հուսալի մասնագետ:",
+          tipDesc:
+            "Կարդացեք ակնարկներ և ստուգեք մասնագետների գնահատականները՝ համոզվելու համար, որ ընտրում եք ձեր նախագծի համար հուսալի մասնագետ:",
           // Article 3
           makingFirstOrder: "Առաջին Պատվերի Ստեղծում",
           makingFirstOrderDesc: "Պատվեր տեղադրելու քայլ առ քայլ ուղեցույց",
@@ -899,53 +1028,76 @@
           waitProposals: "Սպասեք մասնագետների առաջարկություններին",
           chooseSpecialist: "Ընտրեք մասնագետ և հաղորդակցվեք",
           completeOrderProcess: "Ամբողջական Պատվերի Գործընթաց",
-          orderProcessIntro: "JobPortal-ում առաջին պատվերը տեղադրելը պարզ է: Ահա թե ինչին պետք է ակնկալել:",
+          orderProcessIntro:
+            "JobPortal-ում առաջին պատվերը տեղադրելը պարզ է: Ահա թե ինչին պետք է ակնկալել:",
           findServiceStep: "Գտեք Ծառայություն:",
-          findServiceStepDesc: "Զննեք կամ որոնեք ձեզ անհրաժեշտ ծառայությունը: Համոզվեք, որ կարդացել եք ծառայության նկարագրությունը և ստուգել մասնագետների պրոֆիլները:",
+          findServiceStepDesc:
+            "Զննեք կամ որոնեք ձեզ անհրաժեշտ ծառայությունը: Համոզվեք, որ կարդացել եք ծառայության նկարագրությունը և ստուգել մասնագետների պրոֆիլները:",
           viewDetailsStep: "Դիտեք Մանրամասները:",
-          viewDetailsStepDesc: "Սեղմեք ծառայության քարտի վրա՝ ամբողջական մանրամասներ, գնագոյացում, մասնագետի տեղեկություններ և այլ հաճախորդների ակնարկներ տեսնելու համար:",
+          viewDetailsStepDesc:
+            "Սեղմեք ծառայության քարտի վրա՝ ամբողջական մանրամասներ, գնագոյացում, մասնագետի տեղեկություններ և այլ հաճախորդների ակնարկներ տեսնելու համար:",
           startOrder: "Սկսեք Պատվերը:",
-          startOrderDesc: "Սեղմեք 'Պատվիրել' կամ 'Վարձել' կոճակը՝ պատվերի գործընթացը սկսելու համար:",
+          startOrderDesc:
+            "Սեղմեք 'Պատվիրել' կամ 'Վարձել' կոճակը՝ պատվերի գործընթացը սկսելու համար:",
           provideDetails: "Տրամադրեք Պատվերի Մանրամասները:",
-          provideDetailsDesc: "Լրացրեք բոլոր պահանջվող տեղեկությունները, ներառյալ:",
+          provideDetailsDesc:
+            "Լրացրեք բոլոր պահանջվող տեղեկությունները, ներառյալ:",
           dateTime: "Ամսաթվի և ժամի նախապատվություններ",
           location: "Գտնվելու վայր (եթե կիրառելի է)",
           requirements: "Կոնկրետ պահանջներ կամ հրահանգներ",
           budget: "Բյուջեի միջակայք",
           reviewConfirm: "Վերանայեք և Հաստատեք:",
-          reviewConfirmDesc: "Կրկնակի ստուգեք ձեր պատվերի բոլոր մանրամասները հաստատելուց առաջ: Հաստատելուց հետո ձեր պատվերը կտեղադրվի և տեսանելի կլինի մասնագետների համար:",
+          reviewConfirmDesc:
+            "Կրկնակի ստուգեք ձեր պատվերի բոլոր մանրամասները հաստատելուց առաջ: Հաստատելուց հետո ձեր պատվերը կտեղադրվի և տեսանելի կլինի մասնագետների համար:",
           receiveProposals: "Ստացեք Առաջարկություններ:",
-          receiveProposalsDesc: "Մասնագետները կվերանայեն ձեր պատվերը և կներկայացնեն առաջարկություններ: Դուք կստանաք ծանուցումներ, երբ նոր առաջարկություններ են ժամանում:",
+          receiveProposalsDesc:
+            "Մասնագետները կվերանայեն ձեր պատվերը և կներկայացնեն առաջարկություններ: Դուք կստանաք ծանուցումներ, երբ նոր առաջարկություններ են ժամանում:",
           chooseCommunicate: "Ընտրեք և Հաղորդակցվեք:",
-          chooseCommunicateDesc: "Վերանայեք բոլոր առաջարկությունները, համեմատեք մասնագետներին և ընտրեք լավագույն համընկնումը: Ընտրվելուց հետո կարող եք ուղղակիորեն հաղորդակցվել հավելվածի ներսի զրույցի հատկության միջոցով:",
+          chooseCommunicateDesc:
+            "Վերանայեք բոլոր առաջարկությունները, համեմատեք մասնագետներին և ընտրեք լավագույն համընկնումը: Ընտրվելուց հետո կարող եք ուղղակիորեն հաղորդակցվել հավելվածի ներսի զրույցի հատկության միջոցով:",
           important: "Կարևոր:",
-          importantDesc: "Համոզվեք, որ ձեր հաշվում բավարար կրեդիտներ ունեք պատվեր տեղադրելուց առաջ: Կրեդիտներ են պահանջվում մասնագետներ վարձելու համար:",
+          importantDesc:
+            "Համոզվեք, որ ձեր հաշվում բավարար կրեդիտներ ունեք պատվեր տեղադրելուց առաջ: Կրեդիտներ են պահանջվում մասնագետներ վարձելու համար:",
           // Article 4
           appPermissions: "Հավելվածի Թույլտվություններ",
-          appPermissionsDesc: "Հասկացեք, թե ինչ թույլտվություններ է պահանջում մեր հավելվածը",
-          cameraPermission: "Տեսախցիկ - պատվերների համար լուսանկարներ անելու համար",
-          photoLibraryPermission: "Լուսանկարների գրադարան - պատկերներ վերբեռնելու համար",
-          locationPermission: "Գտնվելու վայր - ձեր պրոֆիլի գտնվելու վայրը սահմանելու համար",
-          notificationsPermission: "Ծանուցումներ - պատվերների թարմացումների և հաղորդագրությունների համար",
-          managePermissions: "Կառավարեք թույլտվությունները սարքի կարգավորումներում",
-          whyWeNeedPermissions: "Ինչու ենք Մեզ Անհրաժեշտ Այս Թույլտվությունները",
-          permissionsIntro: "JobPortal-ը պահանջում է որոշակի թույլտվություններ՝ ձեզ լավագույն փորձ ապահովելու համար: Ահա թե ինչու է յուրաքանչյուր թույլտվություն անհրաժեշտ:",
+          appPermissionsDesc:
+            "Հասկացեք, թե ինչ թույլտվություններ է պահանջում մեր հավելվածը",
+          cameraPermission:
+            "Տեսախցիկ - պատվերների համար լուսանկարներ անելու համար",
+          photoLibraryPermission:
+            "Լուսանկարների գրադարան - պատկերներ վերբեռնելու համար",
+          locationPermission:
+            "Գտնվելու վայր - ձեր պրոֆիլի գտնվելու վայրը սահմանելու համար",
+          notificationsPermission:
+            "Ծանուցումներ - պատվերների թարմացումների և հաղորդագրությունների համար",
+          managePermissions:
+            "Կառավարեք թույլտվությունները սարքի կարգավորումներում",
+          whyWeNeedPermissions:
+            "Ինչու ենք Մեզ Անհրաժեշտ Այս Թույլտվությունները",
+          permissionsIntro:
+            "JobPortal-ը պահանջում է որոշակի թույլտվություններ՝ ձեզ լավագույն փորձ ապահովելու համար: Ահա թե ինչու է յուրաքանչյուր թույլտվություն անհրաժեշտ:",
           cameraAccess: "Տեսախցիկի Մատչում:",
-          cameraAccessDesc: "Թույլ է տալիս լուսանկարներ անել ուղղակիորեն հավելվածի ներսում՝ պատվերներ ստեղծելիս կամ պրոֆիլը թարմացնելիս: Սա անհրաժեշտ է ձեր ծառայության հարցումներին տեսողական համատեքստ ավելացնելու համար:",
+          cameraAccessDesc:
+            "Թույլ է տալիս լուսանկարներ անել ուղղակիորեն հավելվածի ներսում՝ պատվերներ ստեղծելիս կամ պրոֆիլը թարմացնելիս: Սա անհրաժեշտ է ձեր ծառայության հարցումներին տեսողական համատեքստ ավելացնելու համար:",
           photoLibraryAccess: "Լուսանկարների Գրադարանի Մատչում:",
-          photoLibraryAccessDesc: "Թույլ է տալիս վերբեռնել գոյություն ունեցող լուսանկարներ ձեր սարքից: Օգտակար է հղումային պատկերներ, օրինակներ կամ պրոֆիլի լուսանկարներ կիսելու համար:",
+          photoLibraryAccessDesc:
+            "Թույլ է տալիս վերբեռնել գոյություն ունեցող լուսանկարներ ձեր սարքից: Օգտակար է հղումային պատկերներ, օրինակներ կամ պրոֆիլի լուսանկարներ կիսելու համար:",
           locationAccess: "Գտնվելու Վայրի Մատչում:",
-          locationAccessDesc: "Օգնում է սահմանել ձեր պրոֆիլի գտնվելու վայրը և գտնել տեղական մասնագետներ: Սա բարելավում է համապատասխանության ճշգրտությունը և թույլ է տալիս բացահայտել մոտակա ծառայությունների մատուցողներին: Ձեր ճշգրիտ գտնվելու վայրը երբեք չի կիսվում ձեր թույլտվությունից առանց:",
+          locationAccessDesc:
+            "Օգնում է սահմանել ձեր պրոֆիլի գտնվելու վայրը և գտնել տեղական մասնագետներ: Սա բարելավում է համապատասխանության ճշգրտությունը և թույլ է տալիս բացահայտել մոտակա ծառայությունների մատուցողներին: Ձեր ճշգրիտ գտնվելու վայրը երբեք չի կիսվում ձեր թույլտվությունից առանց:",
           notificationsAccess: "Ծանուցումներ:",
-          notificationsAccessDesc: "Պահպանում է ձեզ տեղեկացված կարևոր թարմացումների մասին, ներառյալ:",
+          notificationsAccessDesc:
+            "Պահպանում է ձեզ տեղեկացված կարևոր թարմացումների մասին, ներառյալ:",
           newProposals: "Ձեր պատվերների նոր առաջարկություններ",
           messages: "Մասնագետներից հաղորդագրություններ",
           statusChanges: "Պատվերի կարգավիճակի փոփոխություններ",
           paymentConfirmations: "Վճարման հաստատումներ",
           managingPermissions: "Թույլտվությունների Կառավարում:",
-          managingPermissionsDesc: "Դուք կարող եք փոխել այս թույլտվությունները ցանկացած ժամանակ ձեր սարքի կարգավորումներում: Գնացեք Կարգավորումներ > JobPortal > Թույլտվություններ՝ մուտքը փոփոխելու համար: Նշում, որ որոշ հատկություններ կարող են ճիշտ չաշխատել, եթե թույլտվությունները մերժված են:",
+          managingPermissionsDesc:
+            "Դուք կարող եք փոխել այս թույլտվությունները ցանկացած ժամանակ ձեր սարքի կարգավորումներում: Գնացեք Կարգավորումներ > JobPortal > Թույլտվություններ՝ մուտքը փոփոխելու համար: Նշում, որ որոշ հատկություններ կարող են ճիշտ չաշխատել, եթե թույլտվությունները մերժված են:",
           privacy: "Գաղտնիություն:",
-          privacyDesc: "Մենք հարգում ենք ձեր գաղտնիությունը: Թույլտվությունները օգտագործվում են միայն նշված նպատակների համար, և մենք երբեք չենք մուտք գործում ձեր տվյալներին ձեր բացահայտ գործողությունից առանց:",
+          privacyDesc:
+            "Մենք հարգում ենք ձեր գաղտնիությունը: Թույլտվությունները օգտագործվում են միայն նշված նպատակների համար, և մենք երբեք չենք մուտք գործում ձեր տվյալներին ձեր բացահայտ գործողությունից առանց:",
           readMore: "Կարդալ ավելին →",
           readLess: "Կարդալ պակաս ↑",
         },
@@ -959,7 +1111,8 @@
           home: "Главная",
           // Article 1
           howToCreateAccount: "Как создать аккаунт",
-          howToCreateAccountDesc: "Узнайте, как настроить свой профиль и начать работу с JobPortal",
+          howToCreateAccountDesc:
+            "Узнайте, как настроить свой профиль и начать работу с JobPortal",
           step1Download: "Скачайте и откройте приложение",
           step2SignUp: "Нажмите 'Зарегистрироваться' или 'Начать'",
           step3EnterPhone: "Введите номер телефона и имя",
@@ -967,42 +1120,58 @@
           step5CompleteProfile: "Заполните профиль",
           step6StartExploring: "Начните изучать услуги:",
           detailedInstructions: "Подробные Инструкции",
-          createAccountIntro: "Создание аккаунта в JobPortal быстро и просто. Следуйте этим шагам, чтобы начать:",
+          createAccountIntro:
+            "Создание аккаунта в JobPortal быстро и просто. Следуйте этим шагам, чтобы начать:",
           downloadApp: "Скачайте Приложение:",
-          downloadAppDesc: "Получите JobPortal из App Store (iOS) или Google Play Store (Android).",
+          downloadAppDesc:
+            "Получите JobPortal из App Store (iOS) или Google Play Store (Android).",
           openSignUp: "Откройте и Зарегистрируйтесь:",
-          openSignUpDesc: "Запустите приложение и нажмите кнопку 'Зарегистрироваться' или 'Начать' на экране приветствия.",
+          openSignUpDesc:
+            "Запустите приложение и нажмите кнопку 'Зарегистрироваться' или 'Начать' на экране приветствия.",
           enterInfo: "Введите Вашу Информацию:",
-          enterInfoDesc: "Укажите номер телефона и полное имя. Убедитесь, что номер телефона правильный, так как он понадобится для верификации.",
+          enterInfoDesc:
+            "Укажите номер телефона и полное имя. Убедитесь, что номер телефона правильный, так как он понадобится для верификации.",
           verifyPhone: "Подтвердите Ваш Телефон:",
-          verifyPhoneDesc: "Вы получите OTP (Одноразовый Пароль) по SMS. Введите код для подтверждения номера телефона.",
+          verifyPhoneDesc:
+            "Вы получите OTP (Одноразовый Пароль) по SMS. Введите код для подтверждения номера телефона.",
           completeProfile: "Заполните Ваш Профиль:",
-          completeProfileDesc: "Добавьте дополнительную информацию, такую как биография, местоположение и фото профиля, чтобы помочь специалистам найти вас.",
+          completeProfileDesc:
+            "Добавьте дополнительную информацию, такую как биография, местоположение и фото профиля, чтобы помочь специалистам найти вас.",
           startUsing: "Начните Использовать JobPortal:",
-          startUsingDesc: "После настройки профиля вы можете начать просматривать услуги, размещать заказы и связываться со специалистами:",
+          startUsingDesc:
+            "После настройки профиля вы можете начать просматривать услуги, размещать заказы и связываться со специалистами:",
           needHelp: "Нужна Помощь?",
-          needHelpDesc: "Если у вас возникли проблемы при создании аккаунта, проверьте наш FAQ или свяжитесь с нашей службой поддержки.",
+          needHelpDesc:
+            "Если у вас возникли проблемы при создании аккаунта, проверьте наш FAQ или свяжитесь с нашей службой поддержки.",
           // Article 2
           findingServices: "Поиск Услуг",
-          findingServicesDesc: "Откройте для себя доступные услуги и специалистов на JobPortal",
+          findingServicesDesc:
+            "Откройте для себя доступные услуги и специалистов на JobPortal",
           browseByCategory: "Просматривайте услуги по категориям",
           useSearchBar: "Используйте строку поиска для поиска конкретных услуг",
           filterServices: "Фильтруйте по местоположению, цене или рейтингу",
           viewProfiles: "Просматривайте профили специалистов и отзывы",
           saveFavorites: "Сохраняйте избранные услуги на потом",
           howToFindService: "Как Найти Подходящую Услугу",
-          findServiceIntro: "JobPortal предлагает несколько способов найти услуги, соответствующие вашим потребностям:",
+          findServiceIntro:
+            "JobPortal предлагает несколько способов найти услуги, соответствующие вашим потребностям:",
           browseCategory: "Просмотр по Категориям:",
-          browseCategoryDesc: "Навигация по различным категориям услуг, таким как Веб-разработка, Мобильные приложения, Дизайн и т.д., чтобы увидеть все доступные варианты.",
+          browseCategoryDesc:
+            "Навигация по различным категориям услуг, таким как Веб-разработка, Мобильные приложения, Дизайн и т.д., чтобы увидеть все доступные варианты.",
           searchFunctionality: "Функция Поиска:",
-          searchFunctionalityDesc: "Используйте строку поиска вверху, чтобы ввести конкретные ключевые слова, связанные с нужной вам услугой. Поиск мгновенно покажет релевантные результаты.",
+          searchFunctionalityDesc:
+            "Используйте строку поиска вверху, чтобы ввести конкретные ключевые слова, связанные с нужной вам услугой. Поиск мгновенно покажет релевантные результаты.",
           advancedFilters: "Расширенные Фильтры:",
-          advancedFiltersDesc: "Уточните поиск, используя фильтры по местоположению (для поиска местных специалистов), ценовому диапазону и рейтингам, чтобы найти лучший вариант для вашего бюджета и ожиданий качества.",
+          advancedFiltersDesc:
+            "Уточните поиск, используя фильтры по местоположению (для поиска местных специалистов), ценовому диапазону и рейтингам, чтобы найти лучший вариант для вашего бюджета и ожиданий качества.",
           specialistProfiles: "Профили Специалистов:",
-          specialistProfilesDesc: "Нажмите на любую услугу, чтобы просмотреть подробную информацию, увидеть профили специалистов, прочитать отзывы предыдущих клиентов и проверить их портфолио.",
-          saveFavoritesDesc: "Нашли услугу, которая вам нравится? Сохраните ее в избранное для удобного доступа позже. Это поможет вам сравнить варианты перед принятием решения.",
+          specialistProfilesDesc:
+            "Нажмите на любую услугу, чтобы просмотреть подробную информацию, увидеть профили специалистов, прочитать отзывы предыдущих клиентов и проверить их портфолио.",
+          saveFavoritesDesc:
+            "Нашли услугу, которая вам нравится? Сохраните ее в избранное для удобного доступа позже. Это поможет вам сравнить варианты перед принятием решения.",
           tip: "Совет:",
-          tipDesc: "Читайте отзывы и проверяйте рейтинги специалистов, чтобы убедиться, что вы выбираете надежного профессионала для своего проекта.",
+          tipDesc:
+            "Читайте отзывы и проверяйте рейтинги специалистов, чтобы убедиться, что вы выбираете надежного профессионала для своего проекта.",
           // Article 3
           makingFirstOrder: "Создание Первого Заказа",
           makingFirstOrderDesc: "Пошаговое руководство по размещению заказа",
@@ -1014,13 +1183,17 @@
           waitProposals: "Дождитесь предложений от специалистов",
           chooseSpecialist: "Выберите специалиста и общайтесь",
           completeOrderProcess: "Полный Процесс Заказа",
-          orderProcessIntro: "Размещение первого заказа в JobPortal просто. Вот чего ожидать:",
+          orderProcessIntro:
+            "Размещение первого заказа в JobPortal просто. Вот чего ожидать:",
           findServiceStep: "Найдите Услугу:",
-          findServiceStepDesc: "Просматривайте или ищите нужную услугу. Обязательно прочитайте описание услуги и проверьте профили специалистов.",
+          findServiceStepDesc:
+            "Просматривайте или ищите нужную услугу. Обязательно прочитайте описание услуги и проверьте профили специалистов.",
           viewDetailsStep: "Просмотрите Детали:",
-          viewDetailsStepDesc: "Нажмите на карточку услуги, чтобы увидеть полную информацию, цены, информацию о специалисте и отзывы других клиентов.",
+          viewDetailsStepDesc:
+            "Нажмите на карточку услуги, чтобы увидеть полную информацию, цены, информацию о специалисте и отзывы других клиентов.",
           startOrder: "Начните Заказ:",
-          startOrderDesc: "Нажмите кнопку 'Заказать' или 'Нанять', чтобы начать процесс заказа.",
+          startOrderDesc:
+            "Нажмите кнопку 'Заказать' или 'Нанять', чтобы начать процесс заказа.",
           provideDetails: "Укажите Детали Заказа:",
           provideDetailsDesc: "Заполните всю необходимую информацию, включая:",
           dateTime: "Предпочтения по дате и времени",
@@ -1028,39 +1201,53 @@
           requirements: "Конкретные требования или инструкции",
           budget: "Диапазон бюджета",
           reviewConfirm: "Просмотрите и Подтвердите:",
-          reviewConfirmDesc: "Дважды проверьте все детали заказа перед подтверждением. После подтверждения ваш заказ будет размещен и станет видимым для специалистов.",
+          reviewConfirmDesc:
+            "Дважды проверьте все детали заказа перед подтверждением. После подтверждения ваш заказ будет размещен и станет видимым для специалистов.",
           receiveProposals: "Получите Предложения:",
-          receiveProposalsDesc: "Специалисты рассмотрят ваш заказ и отправят предложения. Вы будете получать уведомления при поступлении новых предложений.",
+          receiveProposalsDesc:
+            "Специалисты рассмотрят ваш заказ и отправят предложения. Вы будете получать уведомления при поступлении новых предложений.",
           chooseCommunicate: "Выберите и Общайтесь:",
-          chooseCommunicateDesc: "Просмотрите все предложения, сравните специалистов и выберите лучший вариант. После выбора вы можете общаться напрямую через функцию чата в приложении.",
+          chooseCommunicateDesc:
+            "Просмотрите все предложения, сравните специалистов и выберите лучший вариант. После выбора вы можете общаться напрямую через функцию чата в приложении.",
           important: "Важно:",
-          importantDesc: "Убедитесь, что на вашем счете достаточно кредитов перед размещением заказа. Кредиты необходимы для найма специалистов.",
+          importantDesc:
+            "Убедитесь, что на вашем счете достаточно кредитов перед размещением заказа. Кредиты необходимы для найма специалистов.",
           // Article 4
           appPermissions: "Разрешения Приложения",
-          appPermissionsDesc: "Поймите, какие разрешения нужно нашему приложению",
+          appPermissionsDesc:
+            "Поймите, какие разрешения нужно нашему приложению",
           cameraPermission: "Камера - для фотографирования заказов",
           photoLibraryPermission: "Фототека - для загрузки изображений",
-          locationPermission: "Местоположение - для установки местоположения профиля",
-          notificationsPermission: "Уведомления - для обновлений заказов и сообщений",
+          locationPermission:
+            "Местоположение - для установки местоположения профиля",
+          notificationsPermission:
+            "Уведомления - для обновлений заказов и сообщений",
           managePermissions: "Управляйте разрешениями в настройках устройства",
           whyWeNeedPermissions: "Почему Нам Нужны Эти Разрешения",
-          permissionsIntro: "JobPortal требует определенных разрешений для обеспечения наилучшего опыта. Вот почему каждое разрешение необходимо:",
+          permissionsIntro:
+            "JobPortal требует определенных разрешений для обеспечения наилучшего опыта. Вот почему каждое разрешение необходимо:",
           cameraAccess: "Доступ к Камере:",
-          cameraAccessDesc: "Позволяет делать фотографии непосредственно в приложении при создании заказов или обновлении профиля. Это необходимо для добавления визуального контекста к вашим запросам на услуги.",
+          cameraAccessDesc:
+            "Позволяет делать фотографии непосредственно в приложении при создании заказов или обновлении профиля. Это необходимо для добавления визуального контекста к вашим запросам на услуги.",
           photoLibraryAccess: "Доступ к Фототеке:",
-          photoLibraryAccessDesc: "Позволяет загружать существующие фотографии с вашего устройства. Полезно для обмена справочными изображениями, примерами или фотографиями профиля.",
+          photoLibraryAccessDesc:
+            "Позволяет загружать существующие фотографии с вашего устройства. Полезно для обмена справочными изображениями, примерами или фотографиями профиля.",
           locationAccess: "Доступ к Местоположению:",
-          locationAccessDesc: "Помогает установить местоположение вашего профиля и найти местных специалистов. Это улучшает точность сопоставления и позволяет находить ближайших поставщиков услуг. Ваше точное местоположение никогда не передается без вашего разрешения.",
+          locationAccessDesc:
+            "Помогает установить местоположение вашего профиля и найти местных специалистов. Это улучшает точность сопоставления и позволяет находить ближайших поставщиков услуг. Ваше точное местоположение никогда не передается без вашего разрешения.",
           notificationsAccess: "Уведомления:",
-          notificationsAccessDesc: "Информирует вас о важных обновлениях, включая:",
+          notificationsAccessDesc:
+            "Информирует вас о важных обновлениях, включая:",
           newProposals: "Новые предложения по вашим заказам",
           messages: "Сообщения от специалистов",
           statusChanges: "Изменения статуса заказа",
           paymentConfirmations: "Подтверждения платежей",
           managingPermissions: "Управление Разрешениями:",
-          managingPermissionsDesc: "Вы можете изменить эти разрешения в любое время в настройках устройства. Перейдите в Настройки > JobPortal > Разрешения, чтобы изменить доступ. Обратите внимание, что некоторые функции могут работать неправильно, если разрешения отклонены.",
+          managingPermissionsDesc:
+            "Вы можете изменить эти разрешения в любое время в настройках устройства. Перейдите в Настройки > JobPortal > Разрешения, чтобы изменить доступ. Обратите внимание, что некоторые функции могут работать неправильно, если разрешения отклонены.",
           privacy: "Конфиденциальность:",
-          privacyDesc: "Мы уважаем вашу конфиденциальность. Разрешения используются только для заявленных целей, и мы никогда не получаем доступ к вашим данным без вашего явного действия.",
+          privacyDesc:
+            "Мы уважаем вашу конфиденциальность. Разрешения используются только для заявленных целей, и мы никогда не получаем доступ к вашим данным без вашего явного действия.",
           readMore: "Читать далее →",
           readLess: "Читать меньше ↑",
         },
@@ -1092,7 +1279,9 @@
 
         // Update breadcrumbs
         const breadcrumbHome = document.querySelector(".breadcrumbs a");
-        const breadcrumbCurrent = document.querySelector(".breadcrumbs span:last-child");
+        const breadcrumbCurrent = document.querySelector(
+          ".breadcrumbs span:last-child"
+        );
         if (breadcrumbHome) breadcrumbHome.textContent = t.home;
         if (breadcrumbCurrent) breadcrumbCurrent.textContent = t.gettingStarted;
 
@@ -1128,7 +1317,8 @@
               detailOl[4].innerHTML = `<strong>${t.completeProfile}</strong> ${t.completeProfileDesc}`;
               detailOl[5].innerHTML = `<strong>${t.startUsing}</strong> ${t.startUsingDesc}`;
             }
-            if (needHelpP) needHelpP.innerHTML = `<strong>${t.needHelp}</strong> ${t.needHelpDesc}`;
+            if (needHelpP)
+              needHelpP.innerHTML = `<strong>${t.needHelp}</strong> ${t.needHelpDesc}`;
           }
           const readMore = article1.querySelector(".read-more");
           if (readMore && !article1.classList.contains("expanded")) {
@@ -1208,7 +1398,8 @@
               detailOl[5].innerHTML = `<strong>${t.receiveProposals}</strong> ${t.receiveProposalsDesc}`;
               detailOl[6].innerHTML = `<strong>${t.chooseCommunicate}</strong> ${t.chooseCommunicateDesc}`;
             }
-            if (importantP) importantP.innerHTML = `<strong>${t.important}</strong> ${t.importantDesc}`;
+            if (importantP)
+              importantP.innerHTML = `<strong>${t.important}</strong> ${t.importantDesc}`;
           }
           const readMore = article3.querySelector(".read-more");
           if (readMore && !article3.classList.contains("expanded")) {
@@ -1246,8 +1437,10 @@
               detailUl[2].innerHTML = `<strong>${t.locationAccess}</strong> ${t.locationAccessDesc}`;
               detailUl[3].innerHTML = `<strong>${t.notificationsAccess}</strong> ${t.notificationsAccessDesc}<ul style="margin-top: 0.25rem; padding-left: 1.5rem;"><li>${t.newProposals}</li><li>${t.messages}</li><li>${t.statusChanges}</li><li>${t.paymentConfirmations}</li></ul>`;
             }
-            if (managingP) managingP.innerHTML = `<strong>${t.managingPermissions}</strong> ${t.managingPermissionsDesc}`;
-            if (privacyP) privacyP.innerHTML = `<strong>${t.privacy}</strong> ${t.privacyDesc}`;
+            if (managingP)
+              managingP.innerHTML = `<strong>${t.managingPermissions}</strong> ${t.managingPermissionsDesc}`;
+            if (privacyP)
+              privacyP.innerHTML = `<strong>${t.privacy}</strong> ${t.privacyDesc}`;
           }
           const readMore = article4.querySelector(".read-more");
           if (readMore && !article4.classList.contains("expanded")) {
@@ -1287,7 +1480,7 @@
       function toggleArticle(element) {
         const articleCard = element.closest(".article-card");
         articleCard.classList.toggle("expanded");
-        
+
         // Update read more text based on current language
         const t = translations[currentLang];
         if (articleCard.classList.contains("expanded")) {
@@ -1299,4 +1492,3 @@
     </script>
   </body>
 </html>
-
